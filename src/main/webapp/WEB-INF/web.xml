@@ -63,8 +63,8 @@
 		</init-param>
 		<init-param>
 			<param-name>swagger.api.basepath</param-name>
-			<param-value>https://www.bluemix.info</param-value> 
-			<!-- <param-value>https://localhost:9443/news-aggregator</param-value> -->
+			 <param-value>https://www.bluemix.info</param-value>
+			<!--<param-value>https://localhost:9443/news-aggregator</param-value>  -->
 		</init-param>
 		<init-param>
 			<param-name>api.version</param-name>

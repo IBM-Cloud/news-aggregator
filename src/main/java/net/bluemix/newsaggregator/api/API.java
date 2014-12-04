@@ -419,6 +419,9 @@ public class API {
 
 	public String createPerson(String displayName) {
 
+		if (displayName == null) return null;
+		if (displayName.equalsIgnoreCase("")) return null;
+		
 		String twitter = "";
 		String pictureUrl = "head.png";
 
@@ -454,9 +457,11 @@ public class API {
 
 		List<Person> cache = getFromCacheAllPersons();
 		for (int i = 0; i < cache.size(); i++) {
-			if (cache.get(i).getDisplayName()
-					.equalsIgnoreCase(displayName)) {
-				output = cache.get(i);
+			if (cache.get(i).getDisplayName() != null) {
+				if (cache.get(i).getDisplayName()
+						.equalsIgnoreCase(displayName)) {
+					output = cache.get(i);
+				}
 			}
 		}
 
