@@ -686,7 +686,6 @@ public class API {
 					}
 				}
 				
-				cachedEntry.setCurationDate(date);
 				cachedEntry.setLastModified(date);
 				cachedEntry.setCurator(curator);
 				cachedEntry.setLastEditor(curator);

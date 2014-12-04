@@ -41,6 +41,7 @@ import javax.ws.rs.core.Response.Status;
 import net.bluemix.newsaggregator.ConfigUtilities;
 import net.bluemix.newsaggregator.NewsEntry;
 import net.bluemix.newsaggregator.Person;
+import net.bluemix.newsaggregator.TwitterUtilities;
 
 import org.apache.wink.json4j.JSONException;
 import org.apache.wink.json4j.JSONObject;
@@ -71,13 +72,17 @@ public final class RestAPIApproveNewsEntry {
 	@ApiImplicitParams(value = { 
 			@ApiImplicitParam( name = "newsEntryId", paramType = "form", dataType = "java.lang.String", required = true, 
 					defaultValue = "...",
-					value = "News Entry Id" )	
+					value = "News Entry Id" ),
+			@ApiImplicitParam(name = "tweet", paramType = "form", dataType = "java.lang.String", required = false, 
+			defaultValue = "false", allowableValues = "false,true",
+			value = "true or false")
 	})
 	@ApiResponses(value = { 
 	@ApiResponse(code = 200, message = "Success", response = ResponseApproveNewsEntryDTO.class), 
 	@ApiResponse(code = 500, message = "Failure"),
 	@ApiResponse(code = 401, message = "Unauthorized") })
 	public Response addEntry(@FormParam("newsEntryId") String newsEntryId,
+			@FormParam("tweet") String tweet,
 			@Context final HttpServletRequest httpServletRequest) throws JSONException,
 			URISyntaxException {
 		LOGGER.info("api/approvenewsentry invoked");
@@ -96,7 +101,15 @@ public final class RestAPIApproveNewsEntry {
 		try {			
 			String output = api.approveNewsEntry(newsEntryId, curator);
 			if (output == null) {
-				return Response.status(500).build();
+				return Response.status(500).build();				
+			}
+			else {
+				if (tweet != null) {
+					if (tweet.equalsIgnoreCase("true")) {
+						String twitterOutput = TwitterUtilities.getSingleton().tweetNewsEntry(output);
+						apiResponse.setTweetUrl(twitterOutput);
+					}
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

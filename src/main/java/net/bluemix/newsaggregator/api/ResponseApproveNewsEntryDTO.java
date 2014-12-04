@@ -33,4 +33,14 @@ public class ResponseApproveNewsEntryDTO {
 		this.newsEntryId = newsEntryId;
 	}
 
+	private String tweetUrl;
+
+	@ApiModelProperty(value = "Url of the tweet", required=false)
+	public String getTweetUrl() {
+		return tweetUrl;
+	}
+
+	public void setTweetUrl(String tweetUrl) {
+		this.tweetUrl = tweetUrl;
+	}
 }
