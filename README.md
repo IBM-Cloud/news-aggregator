@@ -108,8 +108,6 @@ Then add the following services:
 
 When running on a server the application picks up the configuration from (most of) these services automatically. However some manual steps need to be done.
 
-In order to use Cloudant, you need to create a database with the name 'bluemixinfo'. After this you need to run net.bluemix.newsaggregator.DatabaseDesign from your local IDE to create the design (see below).
-
 In order to use the single sign on service, you need to create a 'Single Sign On Client Configuration' in the Bluemix dashboard.
 The redirect URL needs to point to '/logon' e.g. https://www.bluemix.info/logon. You need to copy the generated client id and secret.
 

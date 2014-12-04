@@ -31,32 +31,7 @@ public class DatabaseDesign {
 		try {
 			CouchDbConnector db = DatabaseUtilities.getSingleton().getDB();
 			
-			if (!db.contains("_design/views")) {
-				DesignDocument dd = new DesignDocument("_design/views");
-				
-				String mapNewEntries = "function(doc) {\n    if (doc.type == \"NewsEntry\") {\n  emit(doc._id, 1);\n    }\n}";
-				String mapCuratedEntriesByCurationDate = "function(doc) {\n  if (doc.type == \"NewsEntry\") {\n      if (doc.state == \"curated\") {\n        emit(doc.curationDate, doc);\n      }\n  }\n}";
-				String mapIncomingEntriesByCreation = "function(doc) {\r\n  if (doc.type == \"NewsEntry\") {\r\n      if (doc.state == \"new\") {\r\n        emit(doc.creationDate, doc);\r\n      }\r\n  }\r\n}";
-				String mapPersons = "function(doc) {\r\nif (doc.type == \"Person\") {\r\n  emit(doc._id, 1);\r\n    }\r\n}";
-				String mapFeeds = "function(doc) {\r\nif (doc.type == \"Feed\") {\r\n  emit(doc._id, 1);\r\n    }\r\n}";
-				
-				DesignDocument.View view = new DesignDocument.View(mapNewEntries);
-				dd.addView("allNewsEntries", view);
-			
-				view = new DesignDocument.View(mapCuratedEntriesByCurationDate);
-				dd.addView("curatedNewsEntriesByCurationDate", view);
-				
-				view = new DesignDocument.View(mapIncomingEntriesByCreation);
-				dd.addView("incomingNewsEntriesByCreationDate", view);
-				
-				view = new DesignDocument.View(mapPersons);
-				dd.addView("allPersons", view);
-				
-				view = new DesignDocument.View(mapFeeds);
-				dd.addView("allFeeds", view);
-					
-				db.create(dd);
-			}
+			createDesign(db);
 
 			LOGGER.info("initDatabaseDesign succeeded");
 		}
@@ -66,4 +41,32 @@ public class DatabaseDesign {
 		}
 	}
 
+	public static void createDesign(CouchDbConnector db) {
+		if (!db.contains("_design/views")) {
+			DesignDocument dd = new DesignDocument("_design/views");
+			
+			String mapNewEntries = "function(doc) {\n    if (doc.type == \"NewsEntry\") {\n  emit(doc._id, 1);\n    }\n}";
+			String mapCuratedEntriesByCurationDate = "function(doc) {\n  if (doc.type == \"NewsEntry\") {\n      if (doc.state == \"curated\") {\n        emit(doc.curationDate, doc);\n      }\n  }\n}";
+			String mapIncomingEntriesByCreation = "function(doc) {\r\n  if (doc.type == \"NewsEntry\") {\r\n      if (doc.state == \"new\") {\r\n        emit(doc.creationDate, doc);\r\n      }\r\n  }\r\n}";
+			String mapPersons = "function(doc) {\r\nif (doc.type == \"Person\") {\r\n  emit(doc._id, 1);\r\n    }\r\n}";
+			String mapFeeds = "function(doc) {\r\nif (doc.type == \"Feed\") {\r\n  emit(doc._id, 1);\r\n    }\r\n}";
+			
+			DesignDocument.View view = new DesignDocument.View(mapNewEntries);
+			dd.addView("allNewsEntries", view);
+		
+			view = new DesignDocument.View(mapCuratedEntriesByCurationDate);
+			dd.addView("curatedNewsEntriesByCurationDate", view);
+			
+			view = new DesignDocument.View(mapIncomingEntriesByCreation);
+			dd.addView("incomingNewsEntriesByCreationDate", view);
+			
+			view = new DesignDocument.View(mapPersons);
+			dd.addView("allPersons", view);
+			
+			view = new DesignDocument.View(mapFeeds);
+			dd.addView("allFeeds", view);
+				
+			db.create(dd);
+		}
+	}
 }

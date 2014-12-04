@@ -104,6 +104,9 @@ public class DatabaseUtilities {
 						httpClient);
 
 				db = dbInstance.createConnector("bluemixinfo", true);
+				
+				db.createDatabaseIfNotExists();
+				DatabaseDesign.createDesign(db);
  
 				return db;
 			}
