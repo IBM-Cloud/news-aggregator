@@ -15,17 +15,7 @@
  */
 package net.bluemix.newsaggregator;
 
-import java.util.Random;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-
 import net.bluemix.newsaggregator.api.API;
-
-import org.apache.http.client.fluent.Request;
-import org.apache.http.entity.ContentType;
-import org.ektorp.CouchDbConnector;
-
 import twitter4j.Status;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
@@ -72,9 +62,9 @@ public class TwitterUtilities {
 						
 			String hashtag = " #bluemix";
 			
-			int l = 140 - 20 - personName.length() - 1 - hashtag.length();
-			if (title.length() > l) {
-				title = title.substring(0, l - 2);
+			int l = 140 - 37 - personName.length();
+			if (title.length() >= l) {
+				title = title.substring(0, l - 4) + "...";
 			}
 			
 			String message = title + personName + hashtag + " " + link;
@@ -103,7 +93,7 @@ public class TwitterUtilities {
 	        twitter.setOAuthConsumer(consumerKey, consumerSecret);
 	        twitter.setOAuthAccessToken(new AccessToken(accessToken, accessTokenSecret));
 	 
-	        StatusUpdate statusUpdate = new StatusUpdate(message);	      
+	        StatusUpdate statusUpdate = new StatusUpdate(message);
 
 	        Status status = twitter.updateStatus(statusUpdate);
 	        if (status == null) return null;
