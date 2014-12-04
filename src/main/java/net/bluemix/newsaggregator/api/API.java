@@ -644,14 +644,19 @@ public class API {
 			curator = "Development Environment";
 
 		try {
-			Person existingPerson = getPersonByDisplayName(personDisplayName);
-			String personId;
-			if (existingPerson == null) {
-				personId = createPerson(personDisplayName);
-				if (personId == null)
-					return null;
-			} else {
-				personId = existingPerson.getId();
+			String personId = null;
+			if (newsEntry.getAuthorDisplayName() != null) {
+				if (!newsEntry.getAuthorDisplayName().equalsIgnoreCase("")) {
+					Person existingPerson = getPersonByDisplayName(personDisplayName);
+					
+					if (existingPerson == null) {
+						personId = createPerson(personDisplayName);
+						if (personId == null)
+							return null;
+					} else {
+						personId = existingPerson.getId();
+					}
+				}
 			}
 			
 			NewsEntry cachedEntry = getCuratedNewsEntryById(newsEntryId);

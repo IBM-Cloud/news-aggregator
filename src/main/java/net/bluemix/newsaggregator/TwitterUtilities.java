@@ -74,7 +74,7 @@ public class TwitterUtilities {
 			
 			int l = 140 - 20 - personName.length() - 1 - hashtag.length();
 			if (title.length() > l) {
-				title = title.substring(0, l - 1);
+				title = title.substring(0, l - 2);
 			}
 			
 			String message = title + personName + hashtag + " " + link;
