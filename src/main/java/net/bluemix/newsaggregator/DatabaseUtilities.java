@@ -15,15 +15,15 @@
  */
 package net.bluemix.newsaggregator;
 
-import java.net.MalformedURLException;
-
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
 import org.ektorp.http.HttpClient;
 import org.ektorp.http.StdHttpClient;
 import org.ektorp.impl.StdCouchDbInstance;
 
-import com.google.gson.Gson;
+import org.apache.wink.json4j.JSON;
+import org.apache.wink.json4j.JSONArray;
+import org.apache.wink.json4j.JSONObject;
 
 public class DatabaseUtilities {
 
@@ -42,13 +42,14 @@ public class DatabaseUtilities {
 
 	public CouchDbConnector getDB() {
 
-		if (db != null) return db;
- 
+		if (db != null)
+			return db;
+
 		boolean configExists = false;
 		String host = null;
 		String username = null;
 		String password = null;
-		
+
 		try {
 			String db_url = System.getenv("NA_DB_HOST");
 			String db_user = System.getenv("NA_DB_USERNAME");
@@ -56,61 +57,58 @@ public class DatabaseUtilities {
 			if ((db_url != null) && (!db_url.equalsIgnoreCase(""))
 					&& (db_user != null) && (!db_user.equalsIgnoreCase(""))
 					&& (db_pw != null) && (!db_pw.equalsIgnoreCase(""))) {
-				
+
 				host = db_url;
 				username = db_user;
 				password = db_pw;
 
 				configExists = true;
 			} else {
-				String VCAP_SERVICES = System.getenv("VCAP_SERVICES");		
-				
+				String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
+
 				if (VCAP_SERVICES != null) {
-					com.ibm.json.java.JSONObject obj = com.ibm.json.java.JSONObject
-							.parse(VCAP_SERVICES);
-					String dbKey = null;
-					java.util.Set<String> keys = obj.keySet();
+					Object jsonObject = JSON.parse(VCAP_SERVICES);
+					JSONObject json = (JSONObject) jsonObject;
+					String key = null;
+					JSONArray list = null;
+					java.util.Set<String> keys = json.keySet();
 					for (String eachkey : keys) {
 						if (eachkey.contains("cloudantNoSQLDB")) {
-							dbKey = eachkey;
+							key = eachkey;
 							break;
 						}
 					}
-					if (dbKey == null) {
+					if (key == null) {
 						return null;
 					}
+					list = (JSONArray) json.get(key);
+					JSONObject jsonService = (JSONObject) list.get(0);
+					JSONObject credentials = (JSONObject) jsonService
+							.get("credentials");
 
-					com.ibm.json.java.JSONArray list = (com.ibm.json.java.JSONArray) obj
-							.get(dbKey);
-					obj = (com.ibm.json.java.JSONObject) list.get(0);
+					host = (String) credentials.get("host");
+					username = (String) credentials.get("username");
+					password = (String) credentials.get("password");
 
-					obj = (com.ibm.json.java.JSONObject) obj.get("credentials");
-
-					host = (String) obj.get("host");
-					username = (String) obj.get("username");
-					password = (String) obj.get("password");
-					
-					configExists = true;					
-				} 				
+					configExists = true;
+				}
 			}
 			if (configExists) {
 				HttpClient httpClient;
 
 				httpClient = new StdHttpClient.Builder()
-						.url("https://" + host + "/bluemixinfo").username(username)
-						.password(password).build();
+						.url("https://" + host + "/bluemixinfo")
+						.username(username).password(password).build();
 
-				CouchDbInstance dbInstance = new StdCouchDbInstance(
-						httpClient);
+				CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);
 
 				db = dbInstance.createConnector("bluemixinfo", true);
-				
+
 				db.createDatabaseIfNotExists();
 				DatabaseDesign.createDesign(db);
- 
+
 				return db;
-			}
-			else {
+			} else {
 				return null;
 			}
 		} catch (Exception e) {

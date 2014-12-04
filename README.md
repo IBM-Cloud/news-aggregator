@@ -58,9 +58,8 @@ In order to get this file you need to download and install "WebSphere eXtreme Sc
 
 [Download and install WebSphere eXtreme Scale](https://developer.ibm.com/wasdev/downloads/#asset/addons-wxs)
 
-Under Project Properties - Java Build Path - Libraries change the links to these files:
+Under Project Properties - Java Build Path - Libraries change the link of this file:
 * com.ibm.ws.xs.client_1.1.jar (\liberty\dev\ibm-api)
-* com.ibm.json4j_1.0.2.jar (\liberty\lib)
 
 
 *Configure the Liberty server (server.xml)*
@@ -113,7 +112,7 @@ The redirect URL needs to point to '/logon' e.g. https://www.bluemix.info/logon.
 
 In order to pass additional configuration to the application running on Bluemix an [user provided service](http://docs.cloudfoundry.org/devguide/services/user-provided.html) is used.
 
-cf cups news-aggregator-config -p "NA_SSO_REDIRECTURI, NA_SSO_CLIENT_IDENTIFIER, NA_SSO_CLIENT_SECRET, NA_CURATORS, NA_TW_ACCESS_TOKEN_SECRET, NA_TW_ACCESS_TOKEN, NA_TW_CONSUMER_SECRET, NA_TW_CONSUMER_KEY"
+> cf cups news-aggregator-config -p "NA_SSO_REDIRECTURI, NA_SSO_CLIENT_IDENTIFIER, NA_SSO_CLIENT_SECRET, NA_CURATORS, NA_TW_ACCESS_TOKEN_SECRET, NA_TW_ACCESS_TOKEN, NA_TW_CONSUMER_SECRET, NA_TW_CONSUMER_KEY"
 
 Single sign on service:
 * NA_SSO_REDIRECTURI 'your redirect url' e.g. 'https://www.bluemix.info/logon'
@@ -121,7 +120,7 @@ Single sign on service:
 * NA_SSO_CLIENT_SECRET 'your client secret' e.g. 'nhOIysMpRzQkiXzUXAfs'
 
 List of curators:
-* NA_CURATORS 'your comma separate list' e.g. 'http://www.ibm.com/niklas_heidloff@company.com,http://www.ibm.com/rjbaxter@company.com'
+* NA_CURATORS 'your comma separated list' e.g. 'http://www.ibm.com/niklas_heidloff@company.com,http://www.ibm.com/rjbaxter@company.com'
 
 Twitter configuration (you need to create a [Twitter application](https://apps.twitter.com/app/new))
 * NA_TW_ACCESS_TOKEN_SECRET 'your access token secret' e.g. 'nhwcbJKRTE8Lf2ZJx7wpo8CIWXNJPOykRTxNhZH22W01Y'

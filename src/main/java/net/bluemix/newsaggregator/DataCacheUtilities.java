@@ -15,14 +15,9 @@
  */
 package net.bluemix.newsaggregator;
 
-import java.util.Map;
-
-import org.ektorp.CouchDbInstance;
-import org.ektorp.http.HttpClient;
-import org.ektorp.http.StdHttpClient;
-import org.ektorp.impl.StdCouchDbInstance;
-
-import com.ibm.json.java.JSONObject;
+import org.apache.wink.json4j.JSON;
+import org.apache.wink.json4j.JSONArray;
+import org.apache.wink.json4j.JSONObject;
 import com.ibm.websphere.objectgrid.ClientClusterContext;
 import com.ibm.websphere.objectgrid.ObjectGrid;
 import com.ibm.websphere.objectgrid.ObjectGridManager;
@@ -84,29 +79,30 @@ public class DataCacheUtilities {
 
 				if (VCAP_SERVICES == null)
 					return null;
-				com.ibm.json.java.JSONObject obj = com.ibm.json.java.JSONObject
-						.parse(VCAP_SERVICES);
-				String dbKey = null;
-				java.util.Set<String> keys = obj.keySet();
+				
+				Object jsonObject = JSON.parse(VCAP_SERVICES);
+				JSONObject json = (JSONObject) jsonObject;
+				String key = null;
+				JSONArray list = null;
+				java.util.Set<String> keys = json.keySet();
 				for (String eachkey : keys) {
 					if (eachkey.startsWith("DataCache")) {
-						dbKey = eachkey;
+						key = eachkey;
 						break;
 					}
 				}
-				if (dbKey == null) {
+				if (key == null) {
 					return null;
 				}
-				com.ibm.json.java.JSONArray list = (com.ibm.json.java.JSONArray) obj
-						.get(dbKey);
-				obj = (com.ibm.json.java.JSONObject) list.get(0);
-
-				obj = (com.ibm.json.java.JSONObject) obj.get("credentials");
-
-				userName = (String) obj.get("username");
-				password = (String) obj.get("password");
-				endpoint = (String) obj.get("catalogEndPoint");
-				gridName = (String) obj.get("gridName");
+				list = (JSONArray) json.get(key);
+				JSONObject jsonService = (JSONObject) list.get(0);
+				JSONObject credentials = (JSONObject) jsonService
+						.get("credentials");
+				
+				userName = (String) credentials.get("username");
+				password = (String) credentials.get("password");
+				endpoint = (String) credentials.get("catalogEndPoint");
+				gridName = (String) credentials.get("gridName");
 
 				configExists = true;
 			}

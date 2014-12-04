@@ -15,6 +15,10 @@
  */
 package net.bluemix.newsaggregator;
 
+import org.apache.wink.json4j.JSON;
+import org.apache.wink.json4j.JSONArray;
+import org.apache.wink.json4j.JSONObject;
+
 public class ConfigUtilities {
 
 	public ConfigUtilities() {
@@ -99,43 +103,42 @@ public class ConfigUtilities {
 				String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
 
 				if (VCAP_SERVICES != null) {
-					com.ibm.json.java.JSONObject obj = com.ibm.json.java.JSONObject
-							.parse(VCAP_SERVICES);
-					String dbKey = null;
-					java.util.Set<String> keys = obj.keySet();
+					Object jsonObject = JSON.parse(VCAP_SERVICES);
+					JSONObject json = (JSONObject) jsonObject;
+					String key = null;
+					JSONArray list = null;
+					java.util.Set<String> keys = json.keySet();
 					for (String eachkey : keys) {
 						if (eachkey.contains("user-provided")) {
-							dbKey = eachkey;
+							key = eachkey;
 							break;
 						}
 					}
-					if (dbKey == null) {
+					if (key == null) {
 						return;
 					}
+					list = (JSONArray) json.get(key);
+					JSONObject jsonService = (JSONObject) list.get(0);
+					JSONObject credentials = (JSONObject) jsonService
+							.get("credentials");
 
-					com.ibm.json.java.JSONArray list = (com.ibm.json.java.JSONArray) obj
-							.get(dbKey);
-					obj = (com.ibm.json.java.JSONObject) list.get(0);
-
-					obj = (com.ibm.json.java.JSONObject) obj.get("credentials");
-
-					NA_SSO_REDIRECTURI = (String) obj.get("NA_SSO_REDIRECTURI");
-					NA_SSO_CLIENT_IDENTIFIER = (String) obj
+					NA_SSO_REDIRECTURI = (String) credentials.get("NA_SSO_REDIRECTURI");
+					NA_SSO_CLIENT_IDENTIFIER = (String) credentials
 							.get("NA_SSO_CLIENT_IDENTIFIER");
-					NA_SSO_CLIENT_SECRET = (String) obj
+					NA_SSO_CLIENT_SECRET = (String) credentials
 							.get("NA_SSO_CLIENT_SECRET");
 					
-					String curators = (String) obj.get("NA_CURATORS");
+					String curators = (String) credentials.get("NA_CURATORS");
 					if (curators != null) {
 						NA_CURATORS = curators.split(",");
 					} else {
 						NA_CURATORS = new String[0];
 					}
 					
-					NA_TW_CONSUMER_KEY = (String) obj.get("NA_TW_CONSUMER_KEY");
-					NA_TW_CONSUMER_SECRET = (String) obj.get("NA_TW_CONSUMER_SECRET");
-					NA_TW_ACCESS_TOKEN = (String) obj.get("NA_TW_ACCESS_TOKEN");
-					NA_TW_ACCESS_TOKEN_SECRET = (String) obj.get("NA_TW_ACCESS_TOKEN_SECRET");
+					NA_TW_CONSUMER_KEY = (String) credentials.get("NA_TW_CONSUMER_KEY");
+					NA_TW_CONSUMER_SECRET = (String) credentials.get("NA_TW_CONSUMER_SECRET");
+					NA_TW_ACCESS_TOKEN = (String) credentials.get("NA_TW_ACCESS_TOKEN");
+					NA_TW_ACCESS_TOKEN_SECRET = (String) credentials.get("NA_TW_ACCESS_TOKEN_SECRET");
 				}
 			}
 		} catch (Exception e) {
