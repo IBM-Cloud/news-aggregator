@@ -1,0 +1,76 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>news-aggregator</display-name>
+	<description>Bluemix Info</description>
+	<welcome-file-list>
+		<welcome-file>home.html</welcome-file>
+
+	</welcome-file-list>
+
+
+	<servlet>
+		<servlet-name>restSdkService</servlet-name>
+		<servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
+		<init-param>
+			<param-name>applicationConfigLocation</param-name>
+			<param-value>/WEB-INF/application</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>restSdkService</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description>
+			Authentication Servlet
+		</description>
+		<display-name>AuthenticationServlet</display-name>
+		<icon>
+			<small-icon>icons/small.gif</small-icon>
+			<large-icon>icons/small.gif</large-icon>
+		</icon>
+		<servlet-name>AuthenticationServlet</servlet-name>
+		<servlet-class>net.bluemix.newsaggregator.api.AuthenticationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthenticationServlet</servlet-name>
+		<url-pattern>/logon/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description>ApiDeclarationServlet</description>
+		<display-name>ApiDeclarationServlet</display-name>
+		<servlet-name>ApiDeclarationServlet</servlet-name>
+		<servlet-class>com.wordnik.swagger.servlet.listing.ApiDeclarationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ApiDeclarationServlet</servlet-name>
+		<url-pattern>/api-docs/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>DefaultServletReaderConfig</display-name>
+		<servlet-name>DefaultServletReaderConfig</servlet-name>
+		<servlet-class>com.wordnik.swagger.servlet.config.DefaultServletReaderConfig</servlet-class>
+
+		<init-param> 
+			<param-name>swagger.resource.package</param-name>
+			<param-value>net.bluemix.newsaggregator.api</param-value>
+		</init-param>
+		<init-param>
+			<param-name>swagger.api.basepath</param-name>
+			<param-value>https://www.bluemix.info</param-value> 
+			<!-- <param-value>https://localhost:9443/news-aggregator</param-value> -->
+		</init-param>
+		<init-param>
+			<param-name>api.version</param-name>
+			<param-value>1.0.0</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+		<enabled>true</enabled>
+	</servlet>
+</web-app>

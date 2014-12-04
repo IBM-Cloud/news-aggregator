@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="blueMixTimeLine" lang="en">
+<head>
+	<title>Bluemix Info - The News Aggregator for IBM Bluemix Developers</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<meta name="DESCRIPTION" content="Bluemix Info - The News Aggregator for IBM Bluemix Developers" />
+	<meta name="KEYWORDS" content="Bluemix Info - The News Aggregator for IBM Bluemix Developers" />
+	
+	<!-- JS to be moved to the bottom, jquery before angular! --> 
+	<script src="//code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js" type="text/javascript"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js" type="text/javascript"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.1/jquery.timeago.min.js" type="text/javascript"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/timelinecontroller.js"></script>
+	<script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+	
+	<!-- Styles -->	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+	<link href="css/bluemixinfo.css" rel="stylesheet" />				
+</head>
+
+<body ng-controller="TimelineController">	
+		<bnavbar></bnavbar>		
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9">
+					<!-- The time line not done yet
+                   <bluetimeline></bluetimeline> 	-->		
+					<div ng-repeat="entry in curatedEntries">
+						<blueentry entry="entry"></blueentry>
+						<hr />						
+					</div>
+				</div>				
+				<div class="col-lg-3">
+					<blueinfo></blueinfo>
+					<bluetweet></bluetweet>
+					<blueresources></blueresources>
+				</div>
+			</div>
+			<bluefooter></bluefooter>
+		</div>
+</body>	
+<script>
+jQuery(document).ready(function() {
+  jQuery("abbr.timeago").timeago();
+});
+</script>
+</html>

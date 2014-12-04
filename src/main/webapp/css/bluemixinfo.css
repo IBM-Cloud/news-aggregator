@@ -1,0 +1,40 @@
+/* Additional styles used in BlueMix.info */
+body {
+	margin-top: 100px; /* 100px is double the height of the navbar - I made it a big larger for some more space - keep it at 50px at least if you want to use the fixed top nav */
+}
+
+footer {
+	margin: 50px 0;
+}
+
+
+h3,.h3 {
+	font-size: 30px !important;
+}
+
+h1,.h1 {
+	font-size: 22px !important;
+}
+
+h3 {
+	margin-top: 0 !important;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.well {
+	padding: 20px 20px 7px;
+}
+
+h4,h5,h6 {
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+
+.container {
+	width: auto;
+	max-width: 1375px;
+}

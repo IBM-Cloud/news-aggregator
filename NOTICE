@@ -1,0 +1,86 @@
+News Aggregator
+https://github.com/IBM-Bluemix/news-aggregator
+© Copyright IBM Corp. 2014
+
+
+Apache Wink - version 1.4
+http://wink.apache.org/
+Available under Apache license v2: http://maven.apache.org/license.html
+- wink-server
+- wink-json4j
+- wink-client
+- wink-jackson-provider
+- wink-component-test-support
+
+
+Apache HttpComponents - version 4.3.1
+http://hc.apache.org/
+Available under Apache license v2: http://www.apache.org/licenses/
+
+
+SLF4J - version 1.7.7
+http://www.slf4j.org/
+Available under MIT license: http://www.slf4j.org/license.html
+
+
+Ektorp - version 1.4.2
+http://ektorp.org/
+Available under Apache license v2: https://github.com/helun/Ektorp/blob/master/license.txt
+
+
+google-json - version 2.2.4
+https://code.google.com/p/google-gson
+Available under Apache license v2: http://www.apache.org/licenses/LICENSE-2.0
+
+
+AngularJS - version 1.2.26
+https://angularjs.org
+Available under MIT license: https://github.com/angular/angular.js/blob/master/LICENSE
+- angular.min.js
+- angular-sanitize.js
+
+
+jQuery - version 1.11.1
+http://jquery.com/
+Available under MIT license: https://jquery.org/license/
+
+
+Bootstrap - version 3.3.1
+http://getbootstrap.com/
+Available under Apache license v2: http://www.apache.org/licenses/
+
+
+Timeago - version 1.4.1
+http://timeago.yarp.com/
+Available under MIT license: http://opensource.org/licenses/mit-license.php
+
+
+Swagger Servlet - version 2.11
+https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-servlet
+Available under Apache license v2: https://github.com/swagger-api/swagger-core/blob/master/LICENSE
+
+
+Swagger UI
+https://github.com/swagger-api/swagger-ui
+Available under Apache license v2: https://github.com/swagger-api/swagger-ui/blob/master/LICENSE
+
+
+twitter4j - version 4.0.2
+https://github.com/yusuke/twitter4j
+Available under Apache license v2: https://github.com/yusuke/twitter4j/blob/master/LICENSE.txt
+
+
+Rome - version 1.0
+http://rometools.github.io/rome/
+Available under Apache license v2: http://rometools.github.io/rome/license.html
+
+
+Jericho HTML Parser - version 3.1
+http://jericho.htmlparser.net/docs/index.html
+Available under Eclipse Public License (EPL): http://www.eclipse.org/legal/epl-v10.html
+
+
+Collaboration Today
+https://github.com/OpenNTF/collaborationtoday
+http://www.openntf.org/main.nsf/project.xsp?r=project/collaboration%20today/summary
+Available under Apache license v2: https://github.com/OpenNTF/collaborationtoday/blob/master/LICENSE

@@ -1,0 +1,12 @@
+<server description="Cache Service Sample Server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>webProfile-6.0</feature>
+        <feature>eXtremeScale.client-1.1</feature>
+        <feature>icap:appstate-1.0</feature>
+    </featureManager>
+       
+    <application name="cacheServiceSample" context-root="/" location="../../../../../" type="war"/>
+        		   
+</server>

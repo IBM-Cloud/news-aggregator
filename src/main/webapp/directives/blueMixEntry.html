@@ -1,0 +1,17 @@
+<div style="display: table">					
+	<div class="span12" style="display: inline-flex">
+		<div class="newsEntryImageDiv" style="display: initial; min-width: 110px;">
+			<img src="{{entry.authorPictureURL}}" alt="" class="newsEntryImage" style="max-width: 120px;" />
+		</div>
+		<div class="newsEntryDiv" style="display: inline-block;margin-left: 25px;">
+			<h3>
+				<div><a target="_blank" href="{{entry.newsEntryLink}}">{{entry.newsEntryTitle}}</a></div>
+			</h3>
+			<p>
+				<small>{{entry.authorDisplayName}} | <a href="https://twitter.com/{{entry.authorTwitter}}">{{entry.authorTwitter}}</a> | </small>
+				<small>{{entry.newsEntryCurationDate}}</small>
+			</p>
+			<div class="newsAbstract">{{entry.newsEntryFirstSentences}}</div>
+		</div>
+	</div>
+</div>

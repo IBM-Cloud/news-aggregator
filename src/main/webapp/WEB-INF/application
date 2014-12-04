@@ -1,0 +1,12 @@
+net.bluemix.newsaggregator.api.RestAPIGetNews
+net.bluemix.newsaggregator.api.RestAPIAddOrUpdatePersonForm
+net.bluemix.newsaggregator.api.RestAPIAddOrUpdatePersonJSON
+net.bluemix.newsaggregator.api.RestAPIAddOrUpdateNewsEntryForm
+net.bluemix.newsaggregator.api.RestAPIAddOrUpdateNewsEntryJSON
+net.bluemix.newsaggregator.api.RestAPIGetAuthors
+net.bluemix.newsaggregator.api.RestAPIDeleteNewsEntry
+net.bluemix.newsaggregator.api.RestAPITweetNewsEntry
+net.bluemix.newsaggregator.api.RestAPIAddOrUpdateFeedForm
+net.bluemix.newsaggregator.api.RestAPIApproveNewsEntry
+net.bluemix.newsaggregator.api.RestAPIReadFeeds
+net.bluemix.newsaggregator.api.RestAPIUpdateNewsEntryForm
