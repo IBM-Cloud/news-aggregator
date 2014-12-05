@@ -50,6 +50,7 @@ public class DatabaseDesign {
 			String mapIncomingEntriesByCreation = "function(doc) {\r\n  if (doc.type == \"NewsEntry\") {\r\n      if (doc.state == \"new\") {\r\n        emit(doc.creationDate, doc);\r\n      }\r\n  }\r\n}";
 			String mapPersons = "function(doc) {\r\nif (doc.type == \"Person\") {\r\n  emit(doc._id, 1);\r\n    }\r\n}";
 			String mapFeeds = "function(doc) {\r\nif (doc.type == \"Feed\") {\r\n  emit(doc._id, 1);\r\n    }\r\n}";
+			String mapSchedulerData = "function(doc) {\r\nif (doc.type == \"SchedulerData\") {\r\n  emit(doc._id, 1);\r\n    }\r\n}";
 			
 			DesignDocument.View view = new DesignDocument.View(mapNewEntries);
 			dd.addView("allNewsEntries", view);
@@ -65,6 +66,9 @@ public class DatabaseDesign {
 			
 			view = new DesignDocument.View(mapFeeds);
 			dd.addView("allFeeds", view);
+			
+			view = new DesignDocument.View(mapSchedulerData);
+			dd.addView("allSchedulerData", view);
 				
 			db.create(dd);
 		}

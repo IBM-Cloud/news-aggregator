@@ -54,7 +54,8 @@ You can either download the zip file or clone the project from Eclipse. Then imp
 In order to compile the code locally the project pulls in almost all dependencies via Maven. 
 
 The only exception is the library com.ibm.ws.xs.client_1.1.jar which is needed for the data cache service.
-In order to get this file you need to download and install "WebSphere eXtreme Scale for Developers Liberty Profile" and link to it in your project settings.
+In order to get this file you need to download and install "WebSphere eXtreme Scale for Developers Liberty Profile" and link to it in your project settings. To install this product, run the command: 
+> java -jar wxs-wlp_8.6.0.5.jar
 
 [Download and install WebSphere eXtreme Scale](https://developer.ibm.com/wasdev/downloads/#asset/addons-wxs)
 

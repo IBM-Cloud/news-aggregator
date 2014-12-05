@@ -62,7 +62,7 @@ public class NewsEntry extends CouchDbDocument {
 		this.curator = curator;
 		this.lastEditor = lastEditor;
 		this.lastModified = lastModified;
-		this.type = this.type = OBJECT_TYPE;
+		this.type = OBJECT_TYPE;
 	}
 	
 	public String getType() {

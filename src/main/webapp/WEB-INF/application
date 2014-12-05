@@ -10,3 +10,5 @@ net.bluemix.newsaggregator.api.RestAPIAddOrUpdateFeedForm
 net.bluemix.newsaggregator.api.RestAPIApproveNewsEntry
 net.bluemix.newsaggregator.api.RestAPIReadFeeds
 net.bluemix.newsaggregator.api.RestAPIUpdateNewsEntryForm
+net.bluemix.newsaggregator.api.RestAPIReadFeedsScheduler
+net.bluemix.newsaggregator.api.RestAPIScheduler
