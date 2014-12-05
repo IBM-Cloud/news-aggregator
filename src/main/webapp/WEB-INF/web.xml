@@ -42,6 +42,23 @@
 	</servlet-mapping>
 
 	<servlet>
+		<description>
+			Feed Servlet
+		</description>
+		<display-name>FeedServlet</display-name>
+		<icon>
+			<small-icon>icons/small.gif</small-icon>
+			<large-icon>icons/small.gif</large-icon>
+		</icon>
+		<servlet-name>FeedServlet</servlet-name>
+		<servlet-class>net.bluemix.newsaggregator.api.FeedServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FeedServlet</servlet-name>
+		<url-pattern>/feed/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<description>ApiDeclarationServlet</description>
 		<display-name>ApiDeclarationServlet</display-name>
 		<servlet-name>ApiDeclarationServlet</servlet-name>
@@ -57,14 +74,14 @@
 		<servlet-name>DefaultServletReaderConfig</servlet-name>
 		<servlet-class>com.wordnik.swagger.servlet.config.DefaultServletReaderConfig</servlet-class>
 
-		<init-param> 
+		<init-param>
 			<param-name>swagger.resource.package</param-name>
 			<param-value>net.bluemix.newsaggregator.api</param-value>
 		</init-param>
 		<init-param>
-		<param-name>swagger.api.basepath</param-name> 
-			<param-value>https://www.bluemix.info</param-value> 
-				<!--   <param-value>https://localhost:9443/news-aggregator</param-value>  -->
+			<param-name>swagger.api.basepath</param-name>
+			<param-value>https://www.bluemix.info</param-value>
+			<!-- <param-value>https://localhost:9443/news-aggregator</param-value> -->
 		</init-param>
 		<init-param>
 			<param-name>api.version</param-name>
