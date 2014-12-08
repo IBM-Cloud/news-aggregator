@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="blueMixTimeLine" lang="en">
+<head>
+<title>Bluemix.info - The News Aggregator for IBM Bluemix
+	Developers</title>
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"
+	type="text/javascript"></script>
+</head>
+
+<body>
+
+<div id="entries"></div>
+
+<script type="text/javascript">
+var url = 'https://www.bluemix.info/api/curatednews?format=jsonp'; 
+
+$.ajax({type: 'GET', url: url, async: false, jsonpCallback: 'jsonCallback', contentType: "application/json", dataType: 'jsonp', 
+success: function(json) {
+var entries = [];
+$(json.results.curatedEntries).each(function( index, item ) {
+var title = item.newsEntryTitle;
+entries.push("<h2><strong>"+ title + "</strong></h2>");  
+});
+$( "#entries" ).append(entries);},
+error: function(e) {
+debugger;
+}});</script>
+
+</body>
+
+</html>
