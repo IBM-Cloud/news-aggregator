@@ -382,7 +382,7 @@ public class API {
 				useDefaultPic = true;
 		}
 		if (useDefaultPic)
-			pictureUrl = "head.png";
+			pictureUrl = "http://www.bluemix.info/head.png";
 
 		try {
 			db = DatabaseUtilities.getSingleton().getDB();
@@ -423,7 +423,7 @@ public class API {
 		if (displayName.equalsIgnoreCase("")) return null;
 		
 		String twitter = "";
-		String pictureUrl = "head.png";
+		String pictureUrl = "http://www.bluemix.info/head.png";
 
 		try {
 			CouchDbConnector db;

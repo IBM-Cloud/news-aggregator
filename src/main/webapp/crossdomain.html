@@ -13,14 +13,26 @@
 <div id="entries"></div>
 
 <script type="text/javascript">
-var url = 'https://www.bluemix.info/api/curatednews?format=jsonp'; 
+var url = 'https://news-aggregator.mybluemix.net/api/curatednews?format=jsonp'; 
 
 $.ajax({type: 'GET', url: url, async: false, jsonpCallback: 'jsonCallback', contentType: "application/json", dataType: 'jsonp', 
 success: function(json) {
 var entries = [];
 $(json.results.curatedEntries).each(function( index, item ) {
 var title = item.newsEntryTitle;
-entries.push("<h2><strong>"+ title + "</strong></h2>");  
+var firstSentences = item.newsEntryFirstSentences;
+var link = item.newsEntryLink;
+var authorName = item.authorDisplayName;
+var authorPictureUrl = item.authorPictureURL;
+var oneEntry = "";
+oneEntry = "<table><tr><td style='vertical-align:top;'><div style='display: initial; min-width: 110px;'>";
+oneEntry = oneEntry + "<im" + "g src='" + authorPictureUrl + "' alt='' style='max-width: 120px;width:120px;' /></div>";
+oneEntry = oneEntry + "<br><small>" + authorName + "</small></td>";
+oneEntry = oneEntry + "<td style='vertical-align:top;'><div style='margin-left:25px;'><h3>";
+oneEntry = oneEntry + "<div><a target='_blank' href='" + link + "'>" + title + "</a></div>";
+oneEntry = oneEntry + "</h3><div>" + firstSentences + "</div>";
+oneEntry = oneEntry + "</div></td></tr></table><hr>";
+entries.push(oneEntry);  
 });
 $( "#entries" ).append(entries);},
 error: function(e) {
