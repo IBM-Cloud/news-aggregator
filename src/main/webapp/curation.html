@@ -1,118 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Bluemix Info Curation</title>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"
-	type="text/javascript"></script>
-</head>
-<body>
-	<a href="logon">Log on</a>
-	<br>
-	<br>
-	<br>
-	<br>
-	<form action="api/addorupdatenewsentryjson" id="addEntryForm">
-		Author display name: <input type="text" name="an"
-			placeholder="author display name"> <br> Title: <input
-			type="text" name="ti" placeholder="title"> <br> Link: <input
-			type="text" name="li" placeholder="https://domain/entry.html">
-		<br> First sentences: <input type="text" name="fs"
-			placeholder="first sentences"> <br> <input type="submit"
-			value="Add Entry">
-	</form>
-	<br> Result:
-	<br>
-	<div id="result1"></div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<form action="api/addorupdateauthorjson" id="addPersonForm">
-		Display name: <input type="text" name="dn" placeholder="display name">
-		<br> Twitter: <input type="text" name="tw"
-			placeholder="@nheidloff"> <br> Picture URL: <input
-			type="text" name="pu" placeholder="https://domain/picture.png">
-		<br> <input type="submit" value="Add Person">
-	</form>
-	<br> Result:
-	<br>
-	<div id="result2"></div>
-
-	<script>
-		$.ajaxSetup({
-			contentType : "application/json"
-		});
-
-		$("#addEntryForm")
-				.submit(
-						function(event) {
-
-							event.preventDefault();
-							var $form = $(this), an = $form.find(
-									"input[name='an']").val(), ti = $form.find(
-									"input[name='ti']").val(), li = $form.find(
-									"input[name='li']").val(), fs = $form.find(
-									"input[name='fs']").val(), url = $form
-									.attr("action");
-
-							var posting = $.post(url, JSON.stringify({
-								"authorDisplayName" : an,
-								"title" : ti,
-								"link" : li,
-								"firstSentences" : fs,
-								"tweet" : "false"
-							}));
-
-							posting
-									.success(function(data) {
-										$("#result1").empty().append(
-												data.returnCode);
-									});
-
-							posting.fail(function(data, status, statusText) {
-								$("#result1").empty().append(
-										"Status: " + status + "<br>");
-								$("#result1").append(
-										"StatusText: " + statusText + "<br>");
-								$("#result1").append(data.responseText);
-							});
-						});
-
-		$("#addPersonForm")
-				.submit(
-						function(event) {
-
-							event.preventDefault();
-
-							var $form = $(this), dn = $form.find(
-									"input[name='dn']").val(), tw = $form.find(
-									"input[name='tw']").val(), pu = $form.find(
-									"input[name='pu']").val(), url = $form
-									.attr("action");
-
-							var posting = $.post(url, JSON.stringify({
-								"displayName" : dn,
-								"twitter" : tw,
-								"pictureUrl" : pu
-							}));
-
-							posting
-									.success(function(data) {
-									debugger;
-										$("#result2").empty().append(
-												data.returnCode);
-									});
-
-							posting.fail(function(data, status, statusText) {
-								$("#result2").empty().append(
-										"Status: " + status + "<br>");
-								$("#result2").append(
-										"StatusText: " + statusText + "<br>");
-								$("#result2").append(data.responseText);
-							});
-						});
-	</script>
-
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Bluemix Info Curation</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/themes/blue-theme.css" />
+  </head>
+  <body ng-app="CurationApp" md-theme="blue">
+    <md-toolbar class="md-blue-theme" layout="column">
+      <div class="md-toolbar-tools" layout="column" flex="" tabindex="0">
+        <div flex="" layout="row">
+          <a href="logon">Log on</a>
+        </div>
+      </div>
+    </md-toolbar>
+    <div ng-controller="CurationController">
+      <div layout="row" layout-sm="column">
+        <div flex="50">
+          <md-content>
+            <md-card>
+              <h2>Add content</h2>
+              <form style="padding: 20px;" id="addEntryForm">
+                <md-text-float label="Author display name" ng-model="article.authorDisplayName"></md-text-float>
+                <md-text-float label="Article title" ng-model="article.title"></md-text-float>
+                <md-text-float label="Link (http://...)" ng-model="article.link"></md-text-float>
+                <md-text-float label="Article synopsis" ng-model="article.firstSentences"></md-text-float>
+                <md-button class="md-fab" aria-label="Save entry" title="Save new article entry" ng-click="submitArticle($event)" md-theme="blue">
+                  <md-icon icon="img/icons/ic_insert_drive_file_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                </md-button>
+              </form>
+            </md-card>
+          </md-content>
+        </div>
+        <div flex="50">
+          <md-content>
+            <md-card>
+              <h2>Add author</h2>
+              <form style="padding: 20px;" id="addPersonForm">
+                <md-text-float label="Author display name" ng-model="author.displayName"></md-text-float>
+                <md-text-float label="Twitter" ng-model="author.twitter"></md-text-float>
+                <md-text-float label="Picture URL" ng-model="author.pictureUrl"></md-text-float>
+                <md-button class="md-fab float-right" aria-label="Save author" title="Save new author entry" ng-click="submitAuthor($event)" md-theme="blue">
+                  <md-icon icon="img/icons/ic_people_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                </md-button>
+              </form>
+            </md-card>
+          </md-content>
+        </div>
+      </div>
+      <div layout="row" layout-sm="column">
+        <div flex="">
+          <md-content>
+            <md-card>
+              <h2>Result</h2>
+              <div id="result1">{{result}}</div>
+            </md-card>
+          </md-content>
+        </div>
+      </div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/hammerjs/hammer.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="js/curationApp.js"></script>
+  </body>
 </html>

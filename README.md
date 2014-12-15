@@ -15,6 +15,8 @@ The project is a good showcase of Bluemix functionality and services:
 * [Bluemix workload scheduler](https://www.ng.bluemix.net/docs/#services/WorkloadScheduler/index.html#gettingstarted) (in progress) 
 * Plus other [open source libraries](https://github.com/IBM-Bluemix/news-aggregator/blob/master/NOTICE)
 
+It uses [Material Design](https://material.angularjs.org/#/) for visuals
+
 Authors: 
 * Niklas Heidloff [@nheidloff](http://twitter.com/nheidloff)
 * Ryan Baxter [@ryanjbaxter](https://twitter.com/ryanjbaxter)
