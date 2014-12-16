@@ -79,7 +79,7 @@ public class RSSReader {
 		} };
 
 		try {
-			final SSLContext sslContext = SSLContext.getInstance("SSL");
+			final SSLContext sslContext = SSLContext.getInstance("SSL_TLS");
 
 			sslContext.init(null, TRUST_ALL_CERTS, new SecureRandom());
 
