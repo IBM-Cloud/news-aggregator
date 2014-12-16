@@ -63,6 +63,18 @@ Under Project Properties - Java Build Path - Libraries change the link of this f
 * com.ibm.ws.xs.client_1.1.jar (\liberty\dev\ibm-api)
 
 
+*Install Client Libraries for Workload Scheduler*
+
+[Download client libraries](https://start.wa.ibmserviceengage.com/bluemix/ClientLibraries_java.zip)
+
+Import the three jar files into the directory src/main/webapp/WEB-INF/lib/ (create lib if it doesn't exist):
+* twaclient.jar
+* tdwcsimpleui_public.jar
+* tdwccronparser.jar
+
+In your project properties under "Java Build Path" add the three libraries.
+
+
 *Configure the Liberty server (server.xml)*
 
        <server description="new server">

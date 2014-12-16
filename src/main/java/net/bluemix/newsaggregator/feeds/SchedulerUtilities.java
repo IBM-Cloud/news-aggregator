@@ -19,14 +19,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
 import net.bluemix.newsaggregator.DatabaseUtilities;
+import net.bluemix.newsaggregator.api.AuthenticationServlet;
+
 import org.apache.wink.json4j.JSON;
 import org.apache.wink.json4j.JSONArray;
 import org.apache.wink.json4j.JSONObject;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.ViewQuery;
 // TODO add again once workload scheduler libs are on Maven
-/*
+
+
 import com.ibm.twa.applab.client.WorkloadService;
 import com.ibm.twa.applab.client.helpers.Step;
 import com.ibm.twa.applab.client.helpers.TriggerFactory;
@@ -36,14 +40,12 @@ import com.ibm.twa.applab.client.helpers.steps.restutils.RESTAction;
 import com.ibm.twa.applab.client.helpers.steps.restutils.RESTAuthenticationData;
 import com.ibm.twa.applab.client.helpers.steps.restutils.RESTInput;
 import com.ibm.tws.simpleui.bus.Task;
-*/
+
 public class SchedulerUtilities {
 
 	private SchedulerUtilities() {
 	}
 
-	// TODO add again once workload scheduler libs are on Maven
-	/*
 	private static SchedulerUtilities singleton;
 	private WorkloadService ws;
 	String agentName = "_CLOUD";
@@ -56,7 +58,9 @@ public class SchedulerUtilities {
 	}
 
 	public WorkloadService getWorkloadService() {
-
+		
+		AuthenticationServlet.configureSSL();
+		
 		if (ws != null)
 			return ws;
 
@@ -260,6 +264,5 @@ public class SchedulerUtilities {
 				.getWorkloadService();
 		SchedulerUtilities.getSingleton().turnOff();
 
-	}
-	*/
+	}	
 }

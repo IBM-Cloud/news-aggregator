@@ -33,8 +33,7 @@ import net.bluemix.newsaggregator.feeds.SchedulerUtilities;
 import org.apache.wink.json4j.JSONException;
 
 import com.google.gson.Gson;
-// TODO add again once workload scheduler libs are on Maven 
-//import com.ibm.twa.applab.client.WorkloadService;
+import com.ibm.twa.applab.client.WorkloadService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiImplicitParam;
 import com.wordnik.swagger.annotations.ApiImplicitParams;
@@ -82,20 +81,18 @@ public final class RestAPIScheduler {
 				if (state.equalsIgnoreCase("on")) on = true;
 			}
 			
-			// TODO add again once workload scheduler libs are on Maven
-			/*
 			WorkloadService w = SchedulerUtilities.getSingleton()
 					.getWorkloadService();
 			if (w == null) {
 				return Response.status(500).build();
 			}
-			if (on == true) {
+			if (on) {
 				output = SchedulerUtilities.getSingleton().turnOn();	
 			}
 			else {
 				output = SchedulerUtilities.getSingleton().turnOff();
 			}
-			*/
+			
 			if (output == null) {
 				apiResponse.setMessage("Scheduler state couldn't be changed");	
 			}

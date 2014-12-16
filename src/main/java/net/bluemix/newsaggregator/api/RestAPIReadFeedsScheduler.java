@@ -37,8 +37,7 @@ import org.apache.wink.json4j.JSONException;
 
 import com.google.gson.Gson;
 
-// TODO add again once workload scheduler libs are on Maven
-//import com.ibm.twa.applab.client.WorkloadService;
+import com.ibm.twa.applab.client.WorkloadService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
@@ -61,7 +60,8 @@ public final class RestAPIReadFeedsScheduler {
 	public Response getNews(@Context final HttpServletRequest httpServletRequest)
 			throws JSONException, URISyntaxException {
 		LOGGER.info("api/readfeedsscheduler invoked");
-
+		System.err.println("api/readfeedsscheduler invoked");
+		
 		FeedManager fm = FeedManager.getSingleton();
 		Gson gson = new Gson();
 		ResponseReadFeedsDTO apiResponse = new ResponseReadFeedsDTO();
@@ -93,8 +93,7 @@ public final class RestAPIReadFeedsScheduler {
 			}
 		}
 		boolean isAuthorized = false;
-		// TODO add again once workload scheduler libs are on Maven
-		/*
+
 		SchedulerData data = SchedulerUtilities.getSingleton().getData();
 		if (data == null) {
 			return Response.status(500).build();
@@ -107,9 +106,15 @@ public final class RestAPIReadFeedsScheduler {
 				&& (password.equalsIgnoreCase(data.getPassword()))) {
 			isAuthorized = true;
 		}
-		*/
+		
 		if (isAuthorized == false) {
+			LOGGER.info("api/readfeedsscheduler invoked - not authorized");
+			System.err.println("api/readfeedsscheduler invoked - not authorized");
 			return Response.status(401).build();
+		} 
+		else {
+			LOGGER.info("api/readfeedsscheduler invoked - authorized");
+			System.err.println("api/readfeedsscheduler invoked - authorized");
 		}
 
 		try {
