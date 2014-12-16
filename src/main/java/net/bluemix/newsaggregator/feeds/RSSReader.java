@@ -37,8 +37,8 @@ import javax.net.ssl.X509TrustManager;
 
 import net.htmlparser.jericho.Renderer;
 import net.htmlparser.jericho.Source;
-
 import net.bluemix.newsaggregator.NewsEntry;
+import net.bluemix.newsaggregator.api.AuthenticationServlet;
 
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -58,40 +58,9 @@ public class RSSReader {
 	private boolean loaded = false;
 	private Feed persistedFeed;
 
-	static {
-		final TrustManager[] TRUST_ALL_CERTS = new TrustManager[] { new X509TrustManager() {
-			@Override
-			public void checkClientTrusted(
-					final X509Certificate[] certificates, final String authType)
-					throws CertificateException {
-			}
-
-			@Override
-			public void checkServerTrusted(
-					final X509Certificate[] certificates, final String authType)
-					throws CertificateException {
-			}
-
-			@Override
-			public X509Certificate[] getAcceptedIssuers() {
-				return null;
-			}
-		} };
-
-		try {
-			final SSLContext sslContext = SSLContext.getInstance("SSL_TLS");
-
-			sslContext.init(null, TRUST_ALL_CERTS, new SecureRandom());
-
-			HttpsURLConnection.setDefaultSSLSocketFactory(sslContext
-					.getSocketFactory());
-		} catch (final Exception exception) {
-			exception.printStackTrace();
-		}
-	}
-
 	public RSSReader(Feed persistedFeed) {
 		this.persistedFeed = persistedFeed;
+		AuthenticationServlet.configureSSL();
 	}
 
 	public boolean loadFeed() throws Exception {

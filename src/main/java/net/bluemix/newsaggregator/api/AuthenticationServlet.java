@@ -110,7 +110,7 @@ public class AuthenticationServlet extends HttpServlet {
 		// note that it's not adviced to use this in a production application
 		// you should overwrite the X509TrustManager to use a cacerts file (list of trusted signers) 
 		try {
-			SSLContext sslContext = SSLContext.getInstance("SSL");
+			SSLContext sslContext = SSLContext.getInstance("SSL_TLS");
 
 			sslContext.init(null, new TrustManager[] { new X509TrustManager() {
 				public X509Certificate[] getAcceptedIssuers() {
