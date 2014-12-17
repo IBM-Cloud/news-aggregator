@@ -60,7 +60,6 @@ public final class RestAPIReadFeedsScheduler {
 	public Response getNews(@Context final HttpServletRequest httpServletRequest)
 			throws JSONException, URISyntaxException {
 		LOGGER.info("api/readfeedsscheduler invoked");
-		System.err.println("api/readfeedsscheduler invoked");
 		
 		FeedManager fm = FeedManager.getSingleton();
 		Gson gson = new Gson();
@@ -109,12 +108,10 @@ public final class RestAPIReadFeedsScheduler {
 		
 		if (isAuthorized == false) {
 			LOGGER.info("api/readfeedsscheduler invoked - not authorized");
-			System.err.println("api/readfeedsscheduler invoked - not authorized");
 			return Response.status(401).build();
 		} 
 		else {
 			LOGGER.info("api/readfeedsscheduler invoked - authorized");
-			System.err.println("api/readfeedsscheduler invoked - authorized");
 		}
 
 		try {

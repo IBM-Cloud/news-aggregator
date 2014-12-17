@@ -262,7 +262,7 @@ public class SchedulerUtilities {
 	public static void main(String[] args) {
 		WorkloadService w = SchedulerUtilities.getSingleton()
 				.getWorkloadService();
-		SchedulerUtilities.getSingleton().turnOff();
+		SchedulerUtilities.getSingleton().turnOn();
 
 	}	
 }
