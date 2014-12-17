@@ -1,12 +1,13 @@
 {
   "name": "news-aggregator",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "homepage": "https://github.com/IBM-Bluemix/news-aggregator",
   "authors": [
+    "Niklas Heidloff <niklas.heidloff@de.ibm.com>",
     "Stephan H. Wissel <stephan@wissel.net>"
   ],
   "description": "BlueMix curated News",
-  "main": "home.html",
+  "main": "index.html",
   "keywords": [
     "BlueMix",
     "Material",
@@ -25,5 +26,13 @@
   "dependencies": {
     "angular-material": "~0.6.1",
     "jquery": "~2.1.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.3.0",
+    "angular-scenario": "~1.3.0"
+  },
+  "appPath": "app",
+  "resolutions": {
+    "angular": "1.3.7"
   }
 }
