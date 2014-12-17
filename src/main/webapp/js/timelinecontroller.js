@@ -17,6 +17,7 @@ blueMixTimeLine.controller('TimelineController', function($scope, $http) {
 			$scope.curatedEntries = data.curatedEntries;
 			$scope.incomingEntries = data.incomingEntries;
 			$scope.topStories = data.topStories;
+			$scope.isCurrentUserCurator = data.isCurrentUserCurator;
 		});
 }).directive('bnavbar', function() {
     return {

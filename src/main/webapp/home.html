@@ -5,6 +5,8 @@
 	Developers</title>
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="alternate" type="application/rss"
+	title="RSS Feed of Bluemix.info" href="http://www.bluemix.info/feed" />
 <meta name="DESCRIPTION"
 	content="Bluemix.info - The News Aggregator for IBM Bluemix Developers" />
 <meta name="KEYWORDS"
@@ -58,17 +60,80 @@
 			<div class="col-lg-9">
 				<!-- The time line not done yet
                    <bluetimeline></bluetimeline> 	-->
-				<h3 >Bluemix.info - The News Aggregator for IBM Bluemix Developers</h3>
-
+				<h3>Bluemix.info - The News Aggregator for IBM Bluemix
+					Developers</h3>
+<div ng-show="isCurrentUserCurator">
+										 <a style=" color: darkred;" href="curation.html">Add
+											Entry</a>
+									</div>
 				<br />
 				<hr />
 				<div ng-repeat="entry in curatedEntries">
-					<blueentry entry="entry"></blueentry>
+					<table>
+						<tr>
+							<td style="vertical-align: top;">
+								<div class="newsEntryImageDiv"
+									style="display: initial; min-width: 110px;">
+									<img src="{{entry.authorPictureURL}}" alt=""
+										class="newsEntryImage" style="max-width: 120px;" />
+								</div>
+							</td>
+							<td>
+								
+	<div style="margin-left: 25px;">
+									<h3>
+
+										<div>
+											<a target="_blank" href="{{entry.newsEntryLink}}">{{entry.newsEntryTitle}}</a>
+										</div>
+									</h3>
+									<p>
+										<small>{{entry.authorDisplayName}} | <a
+											href="https://twitter.com/{{entry.authorTwitter}}">{{entry.authorTwitter}}</a>
+											|
+										</small> <small>{{entry.newsEntryCurationDate}}</small>
+									</p>
+									<div class="newsAbstract">{{entry.newsEntryFirstSentences}}</div>
+									
+									<div style="margin-top:5px;" ng-show="isCurrentUserCurator">
+										 <a style="color: darkred;" href="editEntry.html?id={{entry.newsEntryId}}">Edit
+											Entry</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
 					<hr />
 				</div>
 			</div>
 			<div class="col-lg-3">
 				<blueinfo></blueinfo>
+
+
+				<div class="well" ng-show="incomingEntries">
+					<h4>Not Curated News</h4>
+					<div ng-repeat="entry in incomingEntries">
+
+
+						<h1 style="font-size: 16px !important; margin-bottom: 4px;">
+
+							<div>
+								<a target="_blank" href="{{entry.newsEntryLink}}">{{entry.newsEntryTitle}}</a>
+							</div>
+						</h1>
+						<p style="margin-bottom:1px;">
+							<small>{{entry.authorDisplayName}} | </small> <small>{{entry.newsEntryPublicationDate}}</small>
+						</p>
+					
+									<div ng-show="isCurrentUserCurator">
+										 <a style=" color: darkred;" href="editEntry.html?id={{entry.newsEntryId}}">Edit
+											Entry</a>
+									</div>
+
+						<br>
+					</div>
+				</div>
+
 				<!-- <bluetweet></bluetweet> -->
 				<div class="well">
 					<h4>
