@@ -64,11 +64,15 @@ public class FeedManager {
 
 				int amount = reader.getSize();
 				if (amount > 5)
-					amount = 5;
+					amount = 1;
+				Date lastPublicationDate = null;
 				for (int index = 0; index < amount; index++) {
-					NewsEntry entry = reader.getNthEntry(index);
+					NewsEntry entry = reader.getNthEntry(index);									
 					if (entry != null) {
-						boolean save = feed.getLastSuccess() == null || entry.getPublicationDate().after(feed.getLastSuccess());
+						if (index == 0) {
+							lastPublicationDate = entry.getPublicationDate();
+						}
+						boolean save = feed.getLastReadEntry() == null || entry.getPublicationDate().after(feed.getLastReadEntry());
 						if (save) {
 							API.getSingleton().addIncomingEntry(entry, feed.getDisplayName());	
 						}											
@@ -78,6 +82,7 @@ public class FeedManager {
 				feed.setLastError(null);
 				feed.setLastErrorMessage("");
 				feed.setLastSuccess(date);
+				feed.setLastReadEntry(lastPublicationDate);
 			} catch (Exception e) {
 				e.printStackTrace();
 				feed.setLastError(date);

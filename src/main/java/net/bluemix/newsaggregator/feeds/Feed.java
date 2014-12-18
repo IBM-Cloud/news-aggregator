@@ -27,6 +27,7 @@ public class Feed extends CouchDbDocument {
 	private String authorId;
 	private boolean redirection = false;
 	private Date lastSuccess;
+	private Date lastReadEntry;
 	private Date lastTry;
 	private Date lastError;
 	private String displayName;
@@ -38,6 +39,14 @@ public class Feed extends CouchDbDocument {
 	
 	public Feed(String newsEntryId) {
 		setId(newsEntryId);		
+	}
+
+	public Date getLastReadEntry() {
+		return lastReadEntry;
+	}
+
+	public void setLastReadEntry(Date lastReadEntry) {
+		this.lastReadEntry = lastReadEntry;
 	}
 
 	public String getType() {
