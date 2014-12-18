@@ -12,7 +12,7 @@ The project is a good showcase of Bluemix functionality and services:
 * [Bluemix data cache service](https://www.ng.bluemix.net/docs/#services/DataCache/index.html#data_cache)
 * [Bluemix session cache service](https://www.ng.bluemix.net/docs/#services/SessionCache/index.html#session_cache) 
 * [User provided service](http://docs.cloudfoundry.org/devguide/services/user-provided.html)
-* [Bluemix workload scheduler](https://www.ng.bluemix.net/docs/#services/WorkloadScheduler/index.html#gettingstarted) (in progress) 
+* [Bluemix workload scheduler](https://www.ng.bluemix.net/docs/#services/WorkloadScheduler/index.html#gettingstarted)
 * Plus other [open source libraries](https://github.com/IBM-Bluemix/news-aggregator/blob/master/NOTICE)
 
 Authors: 
