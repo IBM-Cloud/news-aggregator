@@ -85,7 +85,7 @@ public class AuthenticationServlet extends HttpServlet {
 								userDisplayName);
 				}
 
-				response.sendRedirect("swagger/index.html");
+				response.sendRedirect("?name=" + userName);
 			} else {
 				String state = UUID.randomUUID().toString();
 				request.getSession().setAttribute("state", state);
