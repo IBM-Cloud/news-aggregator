@@ -57,10 +57,17 @@ The only exception is the library com.ibm.ws.xs.client_1.1.jar which is needed f
 In order to get this file you need to download and install "WebSphere eXtreme Scale for Developers Liberty Profile" and link to it in your project settings. To install this product, run the command: 
 > java -jar wxs-wlp_8.6.0.5.jar
 
+[NOTE] This product requires WebSphere Application Server for Developers Liberty Profile Version 8.5 to be installed first.
+
+
 [Download and install WebSphere eXtreme Scale](https://developer.ibm.com/wasdev/downloads/#asset/addons-wxs)
+
+[Download and install WebSphere Application Server for Developers Liberty Profile](https://developer.ibm.com/wasdev)
 
 Under Project Properties - Java Build Path - Libraries change the link of this file:
 * com.ibm.ws.xs.client_1.1.jar (\liberty\dev\ibm-api)
+
+[NOTE] You need to extract the com.ibm.ws.xs.client_1.1.jar from the previously downloaded wxs-wlp_8.6.0.5.jar (\liberty\dev\ibm-api) and copy it into your project folder.
 
 
 *Install Client Libraries for Workload Scheduler*
@@ -115,6 +122,7 @@ Then add the following services:
 * [Bluemix session cache service](https://www.ng.bluemix.net/docs/#services/SessionCache/index.html#session_cache) 
 * [Bluemix workload scheduler](https://www.ng.bluemix.net/docs/#services/WorkloadScheduler/index.html#gettingstarted)
 
+[NOTE] In its current version, the single sign on functionality is not supported due to a change to the sso service provider. To work around this problem you can define Cloud Directory as an authorization endoint for the sso service. In addition to that you may want to disable the method 'checkAuthorization(HttpServletRequest httpServletRequest)' in '/src/main/java/net/bluemix/newsaggregator/api/AuthenticationServlet.java'. Just comment the code and make the function always return true. Please keep in mind that this should only be considered for testing purposes.
 
 *Configure the Application and Services*
 
@@ -208,3 +216,21 @@ Invoke the following URLs:
 * Home: http://[yourappname].mybluemix.net
 * API: https://[yourappname].mybluemix.net/swagger/index.html
 * Curation: https://[yourappname].mybluemix.net/logon
+
+[NOTE] There are a few minor code changes you should do in order to get the proper hyperlinking.
+
+In the following places, change the hard coded url endpoints according to your application route:
+
+./src/main/webapp/directives/bluemixNavbar.html:
+<li><a href="https://www.bluemix.info/swagger/index.html">API</a></li>
+
+./src/main/webapp/directives/bluemixNavbar.html:					
+<li><a href="http://www.bluemix.info/feed">Feed</a></li>
+
+./src/main/webapp/swagger/index.html:      
+url: "https://www.bluemix.info/api-docs",
+
+./src/main/java/net/bluemix/newsaggregator/feeds/SchedulerUtilities.java:				
+"http://www.bluemix.info/api/readfeedsscheduler"
+
+Please note that these are just the essential parts to get your hyperlinking right.
