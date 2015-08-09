@@ -221,16 +221,16 @@ Invoke the following URLs:
 
 In the following places, change the hard coded url endpoints according to your application route:
 
-./src/main/webapp/directives/bluemixNavbar.html:
+> ./src/main/webapp/directives/bluemixNavbar.html:
 <li><a href="https://www.bluemix.info/swagger/index.html">API</a></li>
 
-./src/main/webapp/directives/bluemixNavbar.html:					
+> ./src/main/webapp/directives/bluemixNavbar.html:					
 <li><a href="http://www.bluemix.info/feed">Feed</a></li>
 
-./src/main/webapp/swagger/index.html:      
+> ./src/main/webapp/swagger/index.html:      
 url: "https://www.bluemix.info/api-docs",
 
-./src/main/java/net/bluemix/newsaggregator/feeds/SchedulerUtilities.java:				
+> ./src/main/java/net/bluemix/newsaggregator/feeds/SchedulerUtilities.java:				
 "http://www.bluemix.info/api/readfeedsscheduler"
 
 Please note that these are just the essential parts to get your hyperlinking right.
