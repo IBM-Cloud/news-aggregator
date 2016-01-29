@@ -208,3 +208,17 @@ Invoke the following URLs:
 * Home: http://[yourappname].mybluemix.net
 * API: https://[yourappname].mybluemix.net/swagger/index.html
 * Curation: https://[yourappname].mybluemix.net/logon
+
+
+Documentation
+----------------------------------------------------------------------------------
+
+[Introducing Bluemix.info - News Aggregator for Bluemix Developers](http://heidloff.net/article/03.12.2014123429NHEFL5.htm)
+[Usage of the Cloudant NoSQL Service in Bluemix Info](http://heidloff.net/article/17.12.2014084759NHEB6K.htm)
+[REST APIs in Bluemix.info implemented via JAX-RS and Apache Wink](http://heidloff.net/article/09.12.2014113941NHEEHV.htm)
+[Swagger used in Bluemix.info to document and invoke REST APIs](http://heidloff.net/article/10.12.2014100016NHECKQ.htm)
+[Authentication via the Bluemix Single Sign On Service in Bluemix.info](http://heidloff.net/article/11.12.2014081049NHEAFB.htm)
+[Configuration of Bluemix Apps via User Provided Services](http://heidloff.net/article/16.12.2014110019NHEDRA.htm)
+[Usage of the Data Cache Service in Bluemix.info](http://heidloff.net/article/17.12.2014084759NHEB6K.htm)
+[Bluemix.info reads Feeds every Hour via the Bluemix Workload Scheduler](http://heidloff.net/article/18.12.2014081315NHEAGV.htm)
+[Embed IBM Bluemix News on your own Websites](http://heidloff.net/article/13.01.2015085141NHEB8U.htm)
